@@ -5,6 +5,16 @@ Dear ImGui
 
 ----
 
+### My Changes
+Add a FullAscii bool to ImFontConfig<br>
+Used in imgui_draw to treat char values 0-255 as ASCII instead of switching to UTF-8 for any value >= 128<br>
+
+```
+//Set FullAscii flag
+auto pFont = ImGui::GetFont();
+pFont->ContainerAtlas->ConfigData[pFont->ConfigDataCount].FullAscii = true;
+```
+
 [![Build Status](https://github.com/ocornut/imgui/workflows/build/badge.svg)](https://github.com/ocornut/imgui/actions?workflow=build) [![Static Analysis Status](https://github.com/ocornut/imgui/workflows/static-analysis/badge.svg)](https://github.com/ocornut/imgui/actions?workflow=static-analysis)
 
 <sub>(This library is available under a free and permissive license, but needs financial support to sustain its continued improvements. In addition to maintenance and stability there are many desirable features yet to be added. If your company is using Dear ImGui, please consider reaching out.)</sub>
