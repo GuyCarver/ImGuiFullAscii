@@ -1912,6 +1912,7 @@ ImFontConfig::ImFontConfig()
 {
     memset(this, 0, sizeof(*this));
     FontDataOwnedByAtlas = true;
+    FullAscii = false;
     OversampleH = 3; // FIXME: 2 may be a better default?
     OversampleV = 1;
     GlyphMaxAdvanceX = FLT_MAX;
@@ -3624,8 +3625,8 @@ void ImFont::RenderText(ImDrawList* draw_list, float size, const ImVec2& pos, Im
         }
 
         // Decode and advance source
-        unsigned int c = (unsigned int)*s;
-        if (c < 0x80)
+        unsigned int c = (unsigned int)*s & 0xff;
+        if ((c < 0x80) || (ConfigData->FullAscii))
         {
             s += 1;
         }
